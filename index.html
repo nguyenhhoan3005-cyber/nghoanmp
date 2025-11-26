@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>NHH - [ Music Player ]</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon/fonts/remixicon.css" rel="stylesheet">
+</head>
+<body>
+<div id="intro">
+    <div class="intro-icons">
+        <i class="fa-brands fa-facebook"></i>
+        <i class="fa-brands fa-github"></i>
+        <i class="fa-brands fa-tiktok"></i>
+    </div>
+
+    <h1 class="intro-title">
+        <span class="word w1">Welcome</span>
+        <span class="word w2">to</span><br>
+        <span class="word w3">my</span>
+        <span class="word w4">website</span>
+    </h1>
+
+    <div class="intro-input">
+        <span id="typed"></span><span class="cursor"></span>
+    </div>
+</div>
+
+<div id="main-content" style="display:none;">
+    <div class="video-background-container">
+        <video id="backgroundVideo" autoplay loop muted playsinline>
+            </video>
+        <div class="video-overlay"></div>
+    </div>
+
+    <div class="navbar transparent" id="navbar">
+        <div class="logo">NgHoan</div>
+
+        <div class="social-buttons">
+            <a href="https://github.com/nguyenhhoan3005-cyber" target="_blank" class="social-btn">
+                <i class="fa-brands fa-github"></i>
+            </a>
+            <a href="https://www.facebook.com/nghhoan30th5" target="_blank" class="social-btn">
+                <i class="fa-brands fa-facebook"></i>
+            </a>
+            <a href="https://www.tiktok.com/@hhoan_m55" target="_blank" class="social-btn">
+                <i class="fa-brands fa-tiktok"></i>
+            </a>
+            <a href="#" id="fullscreenBtn" class="social-btn">
+                <i class="fas fa-expand"></i>
+            </a>
+
+
+        </div>
+    </div>
+
+    <div id="homePage" class="page active">
+        <header>
+            <h1 class="brand-title">
+                <span>P</span><span>e</span><span>n</span><span>g</span><span>u</span><span>i</span><span>n</span><span>e</span><span>e</span><span>_</span><span>
+            </h1>
+            <p class="brand-subtitle">
+                <div id="text"></div>
+            </p>
+        </header>
+        <main>
+            <div class="top-controls">
+                <div class="search-box">
+                    <i class="ri-search-line"></i>
+                    <input type="text" id="searchInput" placeholder="Search ...">
+                </div>
+            </div>
+            <ul id="songList" class="song-list">
+                <li class="loading-songs">Đang tải bài hát...</li>
+            </ul>
+        </main>
+        <footer class="home-footer">
+            <div class="logo">NHH</div>
+            <p>&copy; 2025 Nguyen Huy Hoan™. All Rights Reserved.</p>
+        </footer>
+    </div>
+
+    <div id="songDetailPage" class="page">
+        <button id="backToHomeFromDetailBtn" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+        <div class="song-detail-container">
+            <img id="detailAlbumArt" src="https://placehold.co/200x200/3a3a4e/e0e0e0?text=Art" alt="Album Art" class="detail-album-art">
+            <h2 id="detailTrackTitle">Tên Bài Hát</h2>
+            <p id="detailTrackArtist">Tên Nghệ Sĩ</p>
+            <p id="detailAlbumName">Tên Album</p>
+            <button id="playFromDetailBtn" class="play-from-detail-btn"><i class="fas fa-play-circle"></i> Phát</button>
+        </div>
+    </div>
+
+    <div id="playerPage" class="page">
+        <button id="backToHomeBtn" class="back-btn"><i class="fas fa-arrow-left"></i> Back</button>
+        <div class="music-player-container">
+            <div class="music-player-box">
+                <div class="player-header">
+                    <img id="albumArt" src="https://placehold.co/100x100/3a3a4e/e0e0e0?text=Art" alt="Album Art" class="album-art-player">
+                    <div class="track-info-player">
+                        <h2 id="playerTrackTitle">Tên Bài Hát</h2>
+                        <p id="playerTrackArtist">Tên Nghệ Sĩ</p>
+                    </div>
+                </div>
+
+                <div id="lyricsContainer" class="lyrics-container">
+                    <p>Lời bài hát sẽ hiển thị ở đây...</p>
+                </div>
+
+                <div class="player-controls">
+                    <div class="progress-section-player">
+                        <div id="playerProgressBarContainer" class="progress-bar-container-player">
+                            <div id="playerProgressBar" class="progress-bar-player"></div>
+                        </div>
+                        <div class="time-display-player">
+                            <span id="playerCurrentTime">0:00</span>
+                            <span id="playerTotalDuration">0:00</span>
+                        </div>
+                    </div>
+
+                    <div class="main-controls-player">
+                        <button id="playerPrevBtn" class="control-btn-player"><i class="fas fa-backward-step"></i></button>
+                        <button id="playerPlayPauseBtn" class="control-btn-player play-pause-player"><i class="fas fa-play"></i></button>
+                        <button id="playerNextBtn" class="control-btn-player"><i class="fas fa-forward-step"></i></button>
+                    </div>
+
+                    <div class="secondary-controls-player">
+                        <button id="playerRepeatBtn" class="control-btn-player small-icon"><i class="fas fa-repeat"></i></button>
+                        <button id="playerShuffleBtn" class="control-btn-player small-icon"><i class="fas fa-shuffle"></i></button>
+                        <div class="volume-control-player">
+                            <i class="fas fa-volume-down volume-icon-player"></i>
+                            <input type="range" id="playerVolumeSlider" class="volume-slider-player" min="0" max="1" step="0.01" value="0.8">
+                            <i class="fas fa-volume-up volume-icon-player ml-1"></i>
+                        </div>
+                        <div class="playback-speed-control">
+                            <i class="fas fa-tachometer-alt speed-icon"></i>
+                            <input type="range" id="playerSpeedSlider" class="speed-slider" min="0.5" max="2.0" step="0.25" value="1.0">
+                            <span id="currentSpeedDisplay">1.0x</span>
+                        </div>
+                        <div class="rating-control">
+                            <i class="fas fa-star rating-icon"></i>
+                            <input type="range" id="playerRatingSlider" class="rating-slider" min="1" max="5" step="1" value="3">
+                            <span id="currentRatingDisplay">3</span>
+                        </div>
+                    </div>
+                </div>
+                <p class="footer-credit">by Nguyen Huy Hoan</p>
+            </div>
+        </div>
+    </div>
+
+    <audio id="audioPlayer"></audio>
+
+    <!-- Mini Player -->
+    <div id="miniPlayer" class="mini-player">
+        <div class="mini-controls">
+            <button id="miniPrevBtn" class="mini-btn"><i class="fas fa-backward-step"></i></button>
+            <button id="miniPlayPauseBtn" class="mini-btn">▶</button>
+            <button id="miniNextBtn" class="mini-btn"><i class="fas fa-forward-step"></i></button>
+        </div>
+        <div class="mini-info">
+            <img id="miniAlbumArt" src="" alt="Album Art" class="mini-album-art">
+            <div class="mini-track-info">
+                <div id="miniTrackTitle" class="mini-title">Song Title</div>
+                <div id="miniTrackArtist" class="mini-artist">Artist</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- User Bubble Message -->
+    <div class="user-bubble">
+        <img src="https://cdn.pixabay.com/photo/2014/04/02/10/47/red-304570_1280.png" alt="Heart">
+        <div class="msg">Ủng hộ mình nhéee <3</div>
+    </div>
+</div>
+
+    <script src="script.js"></script>
+</body>
+</html>
